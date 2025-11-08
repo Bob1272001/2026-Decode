@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 public class Teleop_All extends LinearOpMode {
     //Drive Base
@@ -14,8 +15,8 @@ public class Teleop_All extends LinearOpMode {
     private DcMotor intakeMotor = null;
 
     //Catapult
-    private DcMotor catapultMotor1 = null;
-    private DcMotor catapultMotor2 = null;
+    private DcMotor catapultMotorLeft = null;
+    private DcMotor catapultMotorRight = null;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -55,9 +56,26 @@ public class Teleop_All extends LinearOpMode {
         intakeMotor = hardwareMap.get(DcMotor.class, "intakeMotor");
 
         //Catapult
-        catapultMotor1 = hardwareMap.get(DcMotor.class, "catapultMotor1");
-        catapultMotor2 = hardwareMap.get(DcMotor.class, "catapultMotor2");
+        catapultMotorLeft = hardwareMap.get(DcMotor.class, "catapultMotor1");
+        catapultMotorRight = hardwareMap.get(DcMotor.class, "catapultMotor2");
+        catapultMotorLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+        catapultMotorRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        catapultMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        catapultMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        if(gamepad1.right_bumper){
+            catapultMotorLeft.setPower(1.0);
+            catapultMotorRight.setPower(1.0);
+        }
+        else if(gamepad1.x){
+            catapultMotorLeft.setPower(0.4);
+            catapultMotorRight.setPower(0.4);
+        }
+        else{
+            catapultMotorLeft.setPower(0.2);
+            catapultMotorRight.setPower(0.2);
+        }
 
     }
 }
