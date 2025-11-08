@@ -3,15 +3,19 @@ package org.firstinspires.ftc.teamcode.Teleop;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class Drive_Base extends LinearOpMode {
-
+public class Teleop_All extends LinearOpMode {
+    //Drive Base
     private DcMotor frontLeft = null;
     private DcMotor frontRight = null;
     private DcMotor backLeft = null;
     private DcMotor backRight = null;
 
+    //Intake
+    private DcMotor intakeMotor = null;
+
     @Override
     public void runOpMode() throws InterruptedException {
+        //Drive Base
 
         frontLeft = hardwareMap.get(DcMotor.class, "front_left");
         frontRight = hardwareMap.get(DcMotor.class, "front_right");
@@ -22,6 +26,9 @@ public class Drive_Base extends LinearOpMode {
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        //Intake
+
 
     }
 }
