@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 public class Teleop_All extends LinearOpMode {
     //Drive Base
@@ -12,6 +13,7 @@ public class Teleop_All extends LinearOpMode {
 
     //Intake
     private DcMotor intakeMotor = null;
+    private double intakeautospeed = 1;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -28,7 +30,14 @@ public class Teleop_All extends LinearOpMode {
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         //Intake
-
-
+        intakeMotor = hardwareMap.get(DcMotor.class, "intakeMotor");
+        intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        intakeMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        //JAVA IS NOT REAL //JAVA IS NOT REAL //JAVA IS NOT REAL //JAVA IS NOT REAL //JAVA IS NOT REAL //JAVA IS NOT REAL //JAVA IS NOT REAL
+        if (gamepad1.a) {
+            intakeMotor.setPower(1);
+        } else {
+            intakeMotor.setPower(0);
+        }
     }
 }
